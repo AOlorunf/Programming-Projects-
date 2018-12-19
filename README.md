@@ -1,1 +1,1 @@
-Some projects Python/sql
+Some Projects, including Python/SQL
