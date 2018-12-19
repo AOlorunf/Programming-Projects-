@@ -1,0 +1,98 @@
+body {
+  font-family: 'Open Sans', sans-sans-serif;
+}
+
+header {
+  background: #3e4249;
+  color: #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #080808;
+}
+
+h1.header-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+
+.list-group-item:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.list-group-item:hover .buttons {
+  display: block;
+}
+
+.list-group-item-heading {
+  font-size: 120%;
+}
+
+.list-group-item-text {
+  color: #999;
+}
+
+.buttons {
+  text-align: right;
+  display: none;
+}
+
+input.task-input{
+  width: 100%;
+  border: none;
+  font-size: 15px;
+  height: 35px;
+  line-height: 1.3333;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
+input.task-input:focus, input.task-input:active{
+  outline: none;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #A52A2A;
+  opacity: 0.5;
+}
+
+table.table tbody tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.panel-footer small, .modal-footer small {
+  color: #999;
+}
+
+#tasklist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#tasklist li {
+  padding: 20px 0px 20px 0px;
+}
+
+#tasklist .deleteItem {
+  float: right;
+  color: #E06C75;
+  cursor: pointer;
+}
+
+input[type=checkbox] {
+  margin-right: 15px;
+}
+
+.heading{
+  width: 50%;
+  margin:30px auto;
+  text-align: center;
+  color: #6BBE23;
+  background: #FFF8DC;
+  border: 2px solid #6B8E23;
+  border-radius: 20px;
+}
