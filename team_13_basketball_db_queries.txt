@@ -1,0 +1,52 @@
+#QUERY 1
+# This query selects the games that were played in the Alamodome
+USE team_13_basketball_db;
+
+CREATE VIEW Query_1 AS
+SELECT Game_ID, Game_Date, Venue_Name
+FROM games JOIN venue USING (Venue_ID)
+WHERE Venue_Name = 'Alamodome'
+ORDER BY Game_ID;
+
+#QUERY 2
+# This query selects the venue with the highest scoring home team and states that team
+USE team_13_basketball_db;
+
+CREATE VIEW Query_2 AS
+SELECT Venue_Name, Team_Name, Max(Home_Team_Points) AS 'Home_Team_Points'
+FROM games JOIN venue USING(Venue_ID)
+		   JOIN team ON Home_Team_ID = Team_ID
+		   
+#QUERY 3
+# This query selects the highest scoring games per round with the participating teams and the venue
+USE team_13_basketball_db;
+
+CREATE VIEW Query_3 AS
+SELECT Game_ID, Game_Date, 
+MAX(Home_Team_Points + Away_Team_Points) AS 'Points_Scored',
+(SELECT Team_Name FROM team WHERE Team_ID = Home_Team_ID) AS 'Home_Team',
+(SELECT Team_Name FROM team WHERE Team_ID = Away_Team_ID) AS 'Away_Team',
+Venue_Name
+FROM games JOIN venue USING (Venue_ID)
+GROUP BY Game_Date
+ORDER BY Game_ID
+
+#QUERY 4
+# This query selects the player with the most minutes played from each team in the championship game
+USE team_13_basketball_db;
+
+CREATE VIEW Query_4 AS
+SELECT CONCAT(First_Name, ' ', Last_Name) AS Player_Name,
+	   MAX(Minutes_Played), Team_Name
+FROM game_rosters JOIN players USING (Player_ID) JOIN team USING (Team_ID)
+GROUP BY Team_ID
+ORDER BY Minutes_Played DESC
+
+#QUERY 5
+# This query selects the team in the championship game with the most substitutions
+USE team_13_basketball_db;
+
+SELECT Team_Name, COUNT(Minutes_Played) AS 'Number_Of_Substitutions'
+FROM team JOIN Players USING(Team_ID) JOIN game_rosters USING(Player_ID) 
+WHERE COUNT(Minutes_Played) = MAX(Minutes_Played)
+GROUP BY Team_ID
